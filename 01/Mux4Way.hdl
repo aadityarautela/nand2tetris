@@ -1,0 +1,15 @@
+CHIP Mux4Way {
+    IN a,b,c,d,sel[2];
+    OUT out;
+
+    PARTS:
+    Not(in=sel[0],out=notsel0);
+    Not(in=sel[1],out=notsel1);
+
+    And3Way(a=a,b=notsel0,c=notsel1,out=isa);
+    And3Way(a=b,b=notsel1,c=sel[0],out=isb);
+    And3Way(a=c,b=notsel0,c=sel[1],out=isc);
+    And3Way(a=d,b=sel[0],c=sel[1],out=isd);
+
+    Or4Way(in[0]=isa,in[1]=isb,in[2]=isc,in[3]=isd,out=out);
+}

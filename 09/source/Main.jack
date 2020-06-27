@@ -1,0 +1,25 @@
+//Main Class
+class Main{
+    function void main(){
+        var Ball ball;
+        var int radius;
+        var int x;
+        var int y;
+        //Input from user various parameters of ball
+        let radius = Keyboard.readInt("Enter radius (0-50): ");
+        let x = Keyboard.readInt("Enter x coordinate (128-384): ");
+        let y = Keyboard.readInt("Enter y coordinate (64-192): ");
+
+        //Clear screen before showing ball bouncing
+        do Screen.clearScreen();
+
+        //Construct a new ball
+        let ball = Ball.new(radius, x, y);
+        
+        //If user presses Q, exit the program; else animate
+        while(~(Keyboard.keyPressed() = 81) ) {
+            do ball.move();
+        }
+        return;
+    }
+}

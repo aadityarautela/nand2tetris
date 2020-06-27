@@ -1,0 +1,51 @@
+//Class declaration of Ball
+class Ball{
+    field int radius;
+    field int x;
+    field int y;
+    field int dx; //Speed in x direction
+    field int dy; //Speed in y direction
+
+    //Initializing Ball object
+    constructor Ball new(int r, int init_x, int init_y) {
+        let radius = r;
+        let x = init_x;
+        let y = init_y;
+        do Screen.drawCircle(x, y,radius);
+        let dx = 2;
+        let dy = 2;
+        return this;
+    }
+
+    method void move(){
+        //Erase the current ball
+        do Screen.setColor(false);
+        do Screen.drawCircle(x,y,radius);
+
+        //Check whether ball is touching margins and if so, reverse the direction of speed in that particular direction
+        if((x-4) < radius){
+            let dx = -dx;
+        }
+        if((x + radius) >  508){
+            let dx = -dx;
+        }
+        if((y-4) < radius){
+            let dy = -dy;
+        }
+        if((y + radius) > 252){
+            let dy = -dy;
+        }
+
+        //Increment speed to current position to get new position of ball
+        let x = x + dx;
+        let y = y + dy;
+
+        //Draw the new ball
+        do Screen.setColor(true);
+        do Screen.drawCircle(x,y,radius);
+        
+        //Wait for 50ms before drawing again
+        do Sys.wait(50);
+        return;
+    }
+}
